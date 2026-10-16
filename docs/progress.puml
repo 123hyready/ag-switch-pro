@@ -1,0 +1,28 @@
+@startuml
+title AG Switch Pro 阶段进度（2026-10-14）
+skinparam defaultFontName Microsoft YaHei
+skinparam backgroundColor #FAFAF8
+skinparam activity {
+  BackgroundColor #E7F4EB
+  BorderColor #367A49
+  FontColor #173521
+}
+start
+:方案确认\ncc-switch 为基础，magpie 意图路由为参考;
+:项目与便携环境\nRust / MinGW / 缓存位于项目内，不修改 PATH;
+:路由核心\n阶段复用、预算、能力过滤、失败冷却、状态连续性;
+:桌面与代理接入\n配置页面、虚拟模型目录、判断费用、实际模型记录;
+:本地验证\n前端 2525/2525，核心 24 项，既有转发器 128 项;
+:桌面打包与运行检查\n构建通过，静默启动并初始化隔离数据库;
+:回退冷却回归\n已修复并通过，相关后端共 142 项;
+:最新 EXE 与便携 ZIP\n已重建，内置前端，无额外控制台窗口;
+:工作交接\n后续运行与真实模型验证交由用户; <<#FFF1CC>>
+:真实模型联调\n尚未执行，需配置实际供应商; <<#E9EDF2>>
+:成本与质量评估\n尚未测得真实节省率; <<#E9EDF2>>
+stop
+legend bottom
+绿色：实现完成并已有本地验证
+黄色：交由用户继续验证
+灰色：尚无真实调用证据
+endlegend
+@enduml

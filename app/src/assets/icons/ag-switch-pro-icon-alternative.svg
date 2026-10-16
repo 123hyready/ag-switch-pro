@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>AG Switch Pro — 万象生长</title>
+  <desc>包容的深青圆环环抱三片向上生长的玉绿叶形。</desc>
+  <circle cx="512" cy="512" r="360" fill="none" stroke="#123F46" stroke-width="80"/>
+  <path d="M512 724C394 587 393 422 512 294C631 422 630 587 512 724Z" fill="#35C99A"/>
+  <path d="M484 718C350 713 256 602 276 463C406 471 497 575 484 718Z" fill="#15866D"/>
+  <path d="M540 718C674 713 768 602 748 463C618 471 527 575 540 718Z" fill="#15866D"/>
+</svg>

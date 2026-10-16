@@ -1,0 +1,40 @@
+@startuml
+title AG Switch Pro：一次任务中的阶段路由
+skinparam defaultFontName Microsoft YaHei
+skinparam backgroundColor #FAFAF8
+skinparam sequenceMessageAlign center
+hide footbox
+actor 用户
+participant "Claude Code / Codex" as client
+participant "AG Switch Pro 代理" as proxy
+participant "阶段状态机" as router
+participant "判断模型" as judge
+participant "低成本工作模型" as cheap
+participant "高能力工作模型" as strong
+database "用量与路由记录" as db
+用户 -> client : 修复问题并验证
+client -> proxy : 选择虚拟路由组，发送完整请求
+proxy -> router : 会话身份、目标、工具结果、能力约束
+alt 新目标 / 阶段变化 / 保持次数用完
+  router -> judge : 有界任务摘要 + 合法候选工作模型
+  judge --> router : 工作模型、阶段、保持次数、简短理由
+  judge -> db : 实际判断用量与已知费用
+else 当前阶段继续
+  router -> router : 复用判断；不重复调用判断模型
+end
+router --> proxy : 本次执行目标
+alt 收集信息 / 明确的机械操作
+  proxy -> cheap : 完整执行请求
+  cheap --> client : 响应 / 工具调用
+else 复杂设计 / 失败诊断
+  proxy -> strong : 完整执行请求
+  strong --> client : 响应 / 工具调用
+end
+proxy -> db : 实际执行模型与路由原因
+client -> proxy : 工具结果后的下一次模型请求
+note over proxy,router
+切换发生在请求边界。
+加密或增量状态保持已接受执行的原模型。
+已开始输出的响应不重放到其他模型。
+end note
+@enduml
